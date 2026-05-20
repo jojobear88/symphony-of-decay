@@ -139,7 +139,7 @@ style window:
     background Image("gui/textbox.png", xalign=0.5, yalign=1.0)
 
 style namebox:
-    xpos gui.name_xpos - 250
+    xpos gui.name_xpos
     xanchor gui.name_xalign
     xsize gui.namebox_width - 30
     ypos gui.name_ypos  + 15
@@ -150,7 +150,7 @@ style namebox:
 
 style say_label:
     properties gui.text_properties("name", accent=True)
-    xalign 1.0
+    xalign 0.5
     yalign 0.5
 
 style say_dialogue:
@@ -158,7 +158,7 @@ style say_dialogue:
 
     xpos gui.dialogue_xpos
     xsize gui.dialogue_width
-    ypos gui.dialogue_ypos - 17
+    ypos gui.dialogue_ypos
 
 
 ## Input screen ################################################################
@@ -177,7 +177,7 @@ screen input(prompt):
     window:
 
         vbox:
-            xalign gui.dialogue_text_xalign
+            xanchor gui.dialogue_text_xalign
             xpos gui.dialogue_xpos
             xsize gui.dialogue_width
             ypos gui.dialogue_ypos
@@ -304,15 +304,15 @@ screen navigation():
         spacing 25
         xoffset -25
 
-        textbutton _("Save") action ShowMenu("save")
-        textbutton _("Load") action ShowMenu("load")
-        textbutton _("Options") action ShowMenu("preferences")
-        textbutton _("History") action ShowMenu("history")
-        textbutton _("About") action ShowMenu("about")
-        textbutton _("Help") action ShowMenu("help")
-        textbutton _("Quit") action Show("confirmbutton")
+        textbutton _("Lưu") action ShowMenu("save")
+        textbutton _("Tải") action ShowMenu("load")
+        textbutton _("Tùy chọn") action ShowMenu("preferences")
+        textbutton _("Lịch sử") action ShowMenu("history")
+        textbutton _("Giới thiệu") action ShowMenu("about")
+        textbutton _("Trợ giúp") action ShowMenu("help")
+        textbutton _("Thoát") action Show("confirmbutton")
 
-    textbutton _("Return") action Return() xalign 0.95 yalign 0.93
+    textbutton _("Quay lại") action Return() xalign 0.95 yalign 0.93
 
 
 style navigation_button
@@ -345,18 +345,19 @@ screen main_menu():
     frame:
         style "main_menu_frame"
     vbox:
-        xpos 280
-        ypos 330
-        textbutton _("Start") action Start() at button1
-        textbutton _("Load") action ShowMenu("load") at button2
-        textbutton _("Options") action ShowMenu("preferences")at button3
-        textbutton _("Help") action ShowMenu("help") at button4
-        textbutton _("About") action ShowMenu("about") at button5
-        textbutton _("Quit") action Quit(confirm=not main_menu) at button6
+        xpos 370
+        ypos 350
+        spacing 42
+        textbutton _("Bắt đầu") action Start() at button1
+        textbutton _("Tiếp tục") action ShowMenu("load") at button2
+        textbutton _("Tùy chọn") action ShowMenu("preferences")at button3
+        textbutton _("Trợ giúp") action ShowMenu("help") at button4
+        textbutton _("Giới thiệu") action ShowMenu("about") at button5
+        textbutton _("Thoát") action Quit(confirm=not main_menu) at button6
 
     add "gui/overlay/main_menu_logo.png"
 
-    text "[config.name!t]" size 60 xpos 501 ypos 225 xanchor 0.5 yanchor 0.5 color u"#766249"
+    text "[config.name!t]" size 40 xpos 501 ypos 225 xanchor 0.5 yanchor 0.5 color u"#766249"
 
 
 
@@ -367,7 +368,8 @@ style main_menu_text
 style main_menu_title is main_menu_text
 style main_menu_version is main_menu_text
 style main_menu_button_text:
-    size 70
+    size 50
+    xalign 0.5
     idle_color u"#4e4e4e"
     hover_color u"#766249"
 style main_menu_button:
@@ -513,20 +515,20 @@ screen about():
     ## This use statement includes the game_menu screen inside this one. The
     ## vbox child is then included inside the viewport inside the game_menu
     ## screen.
-    use game_menu(_("About"), scroll="viewport"):
+    use game_menu(_("Giới thiệu"), scroll="viewport"):
 
         style_prefix "about"
 
         vbox:
 
             label "[config.name!t]"
-            text _("Version [config.version!t]\n")
+            text _("Phiên bản trò chơi [config.version!t]\n")
 
             ## gui.about is usually set in options.rpy.
             if gui.about:
                 text "[gui.about!t]\n"
 
-            text _("Made with {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].\n\n[renpy.license!t]")
+            text _("Tạo bởi phần mềm {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].\n\n[renpy.license!t]")
 
 
 style about_label is gui_label

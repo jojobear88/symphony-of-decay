@@ -12,7 +12,7 @@
 ##
 ## The _() surrounding the string marks it as eligible for translation.
 
-define config.name = _("symphony_of_decay")
+define config.name = _("Bản giao hưởng\ncủa sự mục rữa")
 
 
 ## Determines if the title given above is shown on the main menu screen. Set
@@ -23,7 +23,7 @@ define gui.show_name = True
 
 ## The version of the game.
 
-define config.version = "1.0"
+define config.version = "0.0.1"
 
 
 ## Text that is placed on the game's about screen. Place the text between the
@@ -42,8 +42,9 @@ define build.name = "symphony_of_decay"
 
 ## Sounds and music ############################################################
 
-## These three variables control which mixers are shown to the player by
-## default. Setting one of these to False will hide the appropriate mixer.
+## These three variables control, among other things, which mixers are shown
+## to the player by default. Setting one of these to False will hide the
+## appropriate mixer.
 
 define config.has_sound = True
 define config.has_music = True
@@ -142,7 +143,7 @@ default preferences.afm_time = 15
 ## This generally should not be changed, and if it is, should always be a
 ## literal string, not an expression.
 
-define config.save_directory = "symphony_of_decay-1653677868"
+define config.save_directory = "SymphonyofDecay-1779295141"
 
 
 ## Icon ########################################################################
@@ -195,9 +196,9 @@ init python:
     build.documentation('*.txt')
 
 
-## A Google Play license key is required to download expansion files and perform
-## in-app purchases. It can be found on the "Services & APIs" page of the Google
-## Play developer console.
+## A Google Play license key is required to perform in-app purchases. It can be
+## found in the Google Play developer console, under "Monetize" > "Monetization
+## Setup" > "Licensing".
 
 # define build.google_play_key = "..."
 

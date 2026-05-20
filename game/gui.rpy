@@ -11,6 +11,8 @@ init offset = -2
 init python:
     gui.init(1920, 1080)
 
+## Enable checks for invalid or unstable properties in screens or transforms
+define config.check_conflicting_properties = True
 
 
 ################################################################################
@@ -55,13 +57,13 @@ define gui.interface_text_color = u'#ffffff'
 ## Fonts and Font Sizes ########################################################
 
 ## The font used for in-game text.
-define gui.text_font = "gui/font/Jost-Light.ttf"
+define gui.text_font = "DejaVuSans.ttf"
 
 ## The font used for character names.
-define gui.name_text_font = "gui/font/Redressed.ttf"
+define gui.name_text_font = "DejaVuSans.ttf"
 
 ## The font used for out-of-game text.
-define gui.interface_text_font = "gui/font/Jost-Light.ttf"
+define gui.interface_text_font = "DejaVuSans.ttf"
 
 ## The size of normal dialogue text.
 define gui.text_size = 33
@@ -193,7 +195,7 @@ define gui.quick_button_text_selected_color = gui.accent_color
 ## For example, you can uncomment the following line to set the width of a
 ## navigation button.
 
-#de#fine gui.navigation_button_width = 200
+# define gui.navigation_button_width = 250
 
 
 ## Choice Buttons ##############################################################
@@ -339,6 +341,9 @@ define config.history_length = 250
 ## the cost of performance.
 define gui.history_height = 210
 
+## Additional space to add between history screen entries.
+define gui.history_spacing = 0
+
 ## The position, width, and alignment of the label giving the name of the
 ## speaking character.
 define gui.history_name_xpos = 233
@@ -396,6 +401,7 @@ define gui.nvl_thought_xalign = 0.0
 define gui.nvl_button_xpos = 675
 define gui.nvl_button_xalign = 0.0
 
+
 ## Localization ################################################################
 
 ## This controls where a line break is permitted. The default is suitable
@@ -413,13 +419,15 @@ init python:
 
     ## This increases the size of the quick buttons to make them easier to touch
     ## on tablets and phones.
-    if renpy.variant("touch"):
+    @gui.variant
+    def touch():
 
         gui.quick_button_borders = Borders(60, 21, 60, 0)
 
     ## This changes the size and spacing of various GUI elements to ensure they
     ## are easily visible on phones.
-    if renpy.variant("small"):
+    @gui.variant
+    def small():
 
         ## Font sizes.
         gui.text_size = 45
